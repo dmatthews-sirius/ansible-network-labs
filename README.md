@@ -1,4 +1,4 @@
 # Sirius Ansible Networking Labs Repo
 
-https://bit.ly/3kx2HY4
+https://github.com/mysidlabs/ansible-network-labs/blob/master/lab_documentation/lab_user_guide.md
 
