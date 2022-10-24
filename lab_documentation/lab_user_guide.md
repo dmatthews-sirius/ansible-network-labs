@@ -384,7 +384,7 @@ Execute the following command to decrypt the group_vars/all.yml file:
 
 
 
-## Part 3 - Explore, configure and backup router using playbooks
+## Part 4 - Explore, configure and backup router using playbooks
 ### Lab 1 - Overview
 * Direcory structure review
 * Review ***Execution Environments*** and the new `ansible-navigator` command line tool.
