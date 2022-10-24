@@ -115,7 +115,7 @@ The topology is simple for the sake of learning some ansible basics. Traffic wil
 
 
 
-## Lab 1 - `ansible-navigator` and execution environments
+## Lab 1 - Review the project structure and use `ansible` ad-hoc commands
 1. Review the project structure. 
     ```bash
     siduser101@jump:~$ cd ansible-network-labs/
