@@ -1230,7 +1230,7 @@ While the *ios_config* module has a convenient backup parameter it is of course 
 1. Edit the ***vars.yml*** file. Change << Student ID Number >> and << Router Hostname >> to your values. See  below for an example.  This variable file will be referenced in the playbooks and will be used in the remainder of the labs.
     ```yml
     1 studentid: << Student ID Number >>
-    2 studentrouter: <<Router Hostname >>
+    2 studentrouter: R<< Student ID Number >>
     3 ansible_network_os: ios
     4 dns_servers:
     5   - 8.8.8.8
@@ -1277,43 +1277,41 @@ While the *ios_config* module has a convenient backup parameter it is of course 
 
 1. Run the 3.0-dns-cfg.yml playbook with the –i all-hosts parameter.  (In this lab we are showing 1 way of making a playbook device specific even when other devices exist in the inventory)
     ```yml
-    siduser101@jump:~/ansible-network-labs$ ansible-navigator run 3.0-dns-cfg.yml -i all-hosts
-
+    siduser107@jump:~/ansible-network-labs$ ansible-navigator run 3.0-dns-cfg.yml -i all-hosts 
     PLAY [Router Configurations] ***************************************************
 
     TASK [configure name servers] **************************************************
-    skipping: [R101] => (item=8.8.8.8) 
-    skipping: [R101] => (item=8.8.4.4) 
-    skipping: [R102] => (item=8.8.8.8) 
-    skipping: [R102] => (item=8.8.4.4) 
-    skipping: [R103] => (item=8.8.8.8) 
-    skipping: [R103] => (item=8.8.4.4) 
-    skipping: [R104] => (item=8.8.8.8) 
-    skipping: [R104] => (item=8.8.4.4) 
     skipping: [R105] => (item=8.8.8.8) 
     skipping: [R105] => (item=8.8.4.4) 
+    skipping: [R106] => (item=8.8.8.8) 
+    skipping: [R106] => (item=8.8.4.4) 
+    skipping: [R108] => (item=8.8.8.8) 
+    skipping: [R108] => (item=8.8.4.4) 
+    skipping: [R109] => (item=8.8.8.8) 
+    skipping: [R109] => (item=8.8.4.4) 
+    skipping: [R110] => (item=8.8.8.8) 
+    skipping: [R110] => (item=8.8.4.4) 
+    changed: [R107] => (item=8.8.8.8)
+    changed: [R107] => (item=8.8.4.4)
+    [WARNING]: To ensure idempotency and correct diff the input configuration lines
+    should be similar to how they appear if present in the running configuration on
+    device
 
     TASK [enable LoopBack0 interface] **********************************************
-    skipping: [R101]
-    skipping: [R102]
-    skipping: [R103]
-    skipping: [R104]
     skipping: [R105]
+    skipping: [R106]
+    skipping: [R108]
+    skipping: [R109]
+    skipping: [R110]
+    changed: [R107]
 
     TASK [Configure L0] ************************************************************
-    skipping: [R101]
-    skipping: [R102]
-    skipping: [R103]
-    skipping: [R104]
     skipping: [R105]
-
-    PLAY RECAP *********************************************************************
-    R101                       : ok=0    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
-    R102                       : ok=0    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
-    R103                       : ok=0    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
-    R104                       : ok=0    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
-    R105                       : ok=0    changed=0    unreachable=0    failed=0    skipped=3    rescued=0    ignored=0   
-    siduser101@jump:~/ansible-network-labs$
+    skipping: [R106]
+    skipping: [R108]
+    skipping: [R109]
+    skipping: [R110]
+    changed: [R107]
     ```
     > **Note**: Notice how the other routers from the all-hosts inventory file were skipped.
 
