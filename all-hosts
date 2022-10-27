@@ -36,11 +36,8 @@ R107 ansible_host=10.1.107.10
 R108 ansible_host=10.1.108.10
 R109 ansible_host=10.1.109.10
 R110 ansible_host=10.1.110.10
-R111 ansible_host=10.1.111.10
-R112 ansible_host=10.1.112.10
-R113 ansible_host=10.1.113.10
-R114 ansible_host=10.1.114.10
-R115 ansible_host=10.1.115.10
+R250 ansible_host=10.1.250.10
+R251 ansible_host=10.1.251.10
 
 [lab:vars]
 ansible_network_os=ios
