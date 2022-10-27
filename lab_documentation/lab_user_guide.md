@@ -837,9 +837,10 @@ We will now run a playbook to put a base configuration on your router.  This wil
     R101#exit
     ```
 
-### <span style="color:red">**Bonus** </span> - Using `ansible-vault`
+## <span style="color:red">----- **Bonus** -----</span>
+## Using `ansible-vault`
 Run playbook 1.4 using ansible vault to encrypt and decrypt a variable file containing the usernames and passwords.
-1. Look at encrypt.yml.  Modify the file with your username and passwword from lab 
+1. Look at encrypt.yml.  Modify the file with your username and password from lab 
     ```yml
     1 username: siduserXXX
     2 password: password                     
@@ -910,6 +911,39 @@ Run playbook 1.4 using ansible vault to encrypt and decrypt a variable file cont
     See 'ansible-vault <command> --help' for more information on a specific command.
     siduser101@jump:~/ansible-network-labs$ 
     ```
+1. Configure your environment to allow ansible-navigator to leverage ansible-vault
+    
+    https://ansible-navigator.readthedocs.io/en/latest/faq/#how-can-i-use-a-vault-password-with-ansible-navigator
+
+    The following options provide a vault password to ansible-navigator when using the text-based user interface (TUI). Please ensure these do not conflict with your enterprise security standards. Do not add password files to source control.
+
+    * Store the vault password securely on the local file system
+        ```bash
+        $ touch ~/.vault_password
+        $ chmod 600 ~/.vault_password
+        # The leading space here is necessary to keep the command out of the command history
+        $  echo my_password >> ~/.vault_password
+        # Link the password file into the current working directory
+        $ ln ~/.vault_password .
+        # Set the environment variable to the location of the file
+        $ ANSIBLE_VAULT_PASSWORD_FILE=.vault_password
+        $ ansible-navigator run site.yml
+        ```
+    * Store the vault password in an environment variable
+        ```bash
+        $ touch ~/.vault_password.sh
+        $ chmod 700 ~/.vault_password.sh
+        $ echo -e '#!/bin/sh\necho ${ANSIBLE_VAULT_PASSWORD}' >> ~/.vault_password.sh
+        # Link the password file into the current working directory
+        $ ln ~/.vault_password.sh .
+        # The leading space here is necessary to keep the command out of the command history
+        # by using an environment variable prefixed with ANSIBLE it will automatically get passed
+        # into the execution environment
+        $  export ANSIBLE_VAULT_SECRET=my_password
+        # Set the environment variable to the location of the file
+        $ ANSIBLE_VAULT_PASSWORD_FILE=.vault_password.sh
+        $ ansible-navigator run site.yml
+        ```
 1. Run the 1.4 playbook with the encrypted variable file using the --ask-vault-pass parameter.
     ```yml
     siduser101@jump:~/ansible-network-labs$ ansible-playbook 1.4-user-setup.yml --ask-vault-pass
@@ -1440,7 +1474,7 @@ While the *ios_config* module has a convenient backup parameter it is of course 
 ![ac_home.png should be visible here](images/ac_home.png)
 
 ## Build a backup job
-1. Modify your github repositorie's tower-hosts file to contain your router information.
+1. Modify your github repository's tower-hosts file to contain your router information.
 1. Create a new project.  Click ‘Projects’ on the left-hand side of the page.  Then click the plus ‘+’ icon to add a new inventory.
 
 
