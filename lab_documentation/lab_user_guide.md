@@ -1418,10 +1418,15 @@ While the *ios_config* module has a convenient backup parameter it is of course 
     ```
 1. Validate that the router has the new configuration.
 
-
-1. `ssh` into your router and ping another student's router
+## Ping another student's loopback address
+1. `ssh siduser<<ID>>@10.1.<<ID>>.10` into your router and ping another student's router
     ```bash
-
+    R107#ping 172.17.101.1 source l0
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 172.17.101.1, timeout is 2 seconds:
+    Packet sent with a source address of 172.17.107.1 
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
     ```
 
 # Lab 4 - Red Hat Automation Controller
@@ -1437,3 +1442,31 @@ While the *ios_config* module has a convenient backup parameter it is of course 
 ## Build a backup job
 1. Modify your github repositorie's tower-hosts file to contain your router information.
 1. Create a new project.  Click ‘Projects’ on the left-hand side of the page.  Then click the plus ‘+’ icon to add a new inventory.
+
+
+
+
+
+# Appendix A:  
+## Useful resource links and information
+
+Links:
+Ansible Best Practices
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
+
+Ansible Network troubleshooting
+	https://docs.ansible.com/ansible/latest/network/user_guide/network_debug_troubleshooting.html
+
+Ansible cli_command module information
+	https://www.ansible.com/blog/deep-dive-on-cli-command-for-network-automation
+
+Variable precedence
+https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable
+
+Additional Notes:
+* Remember YAML is very sensitive to correct indentation
+* Hostvars allow us to access meta-data about our inventory hosts.
+* The use of an Ansible role is best practice when there is a well-defined scope with a high possibility of re-use.
+* If you copy and paste text for a playbook you may get indentation issues. Ansible provides a simple syntax checker, try ansible-playbook --syntax-check backup.yml to verify. A Best Practice is to use a linter, for example ansible-review. Ansible provides excellent online documentation, which is also available from the command line, for example ansible-doc ios_config. For a full list of modules try ansible-doc –l
+* There where multiple ways of implementing a playbook where specific tasks or groups of tasks execute against specific hosts. For example, we could have used 1 playbook for configuring every router in the lab utilizing the “when:” statement to ensure specific tasks are only applied to a specific router. Although this is not necessarily following best practices.
+* The use of handlers: which can be used in any playbook.  A handler is a special way of calling a task whenever an action needs to be taken after a previous task. For example, both installing and configuring an application may require a restart.  A handler would be notified by both tasks but would only run once when the playbook finishes.
