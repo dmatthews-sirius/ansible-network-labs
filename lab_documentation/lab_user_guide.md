@@ -466,8 +466,8 @@ Execute the following command to decrypt the group_vars/all.yml file:
     ```
 
     ```
-    NAME                             TAG      EXECUTION ENVIRONMENT	CREATED         SIZE
-    0│sid-security-ee (primary)        latest                    True	2 months ago    681 MB
+    NAME                             TAG      EXECUTION ENVIRONMENT	    CREATED         SIZE
+    0│ee-supported-rhel8             latest   True	                    2 months ago    681 MB
 
 
 
@@ -478,7 +478,7 @@ Execute the following command to decrypt the group_vars/all.yml file:
 
     ```
 
-    > **Note**: Again, follow along with the instructor as he explores `sid-security-ee` execution environment.
+    > **Note**: Again, follow along with the instructor as they explore the `ee-supported-rhel8` execution environment.
 
 ### Understand and use facts
    **Gather facts from router**    
