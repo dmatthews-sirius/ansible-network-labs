@@ -1358,6 +1358,18 @@ While the *ios_config* module has a convenient backup parameter it is of course 
     ```
 1. `ssh` into your router.   Ping the instructor's loopback interface from your loopback interface.
     ```bash
+    siduser107@jump:~/ansible-network-labs$ ssh siduser107@10.1.107.10
+    Password: 
+     Sirius Immersion Days are Super Fun and Cool!!!! 
+
+
+    R107#ping 172.17.0.1 source l0
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 172.17.0.1, timeout is 2 seconds:
+    Packet sent with a source address of 172.17.107.1 
+    !!!!!
+    Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+    R107#
 
     ```
 ## Configure security setting via file
