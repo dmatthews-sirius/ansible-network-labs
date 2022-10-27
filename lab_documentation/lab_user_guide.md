@@ -1324,10 +1324,13 @@ While the *ios_config* module has a convenient backup parameter it is of course 
     Sirius Immersion Days are Super Fun and Cool!!!! 
 
 
-    R101#ping 172.17.0.1 source l0
-                                ^
-    % Invalid input detected at '^' marker.
-
+    R107#ping 172.17.0.1 source l0
+    Type escape sequence to abort.
+    Sending 5, 100-byte ICMP Echos to 172.17.0.1, timeout is 2 seconds:
+    Packet sent with a source address of 172.17.107.1 
+    .....
+    Success rate is 0 percent (0/5)
+    R107#
     ```
     > **Note**: This fails because we do not have a GRE Tunnel and routing existing between your router and the instructor router.
 1. Disconnect from your router by typing exit.
